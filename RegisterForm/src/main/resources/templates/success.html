@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div sec:authorize="isAuthenticated()">
+		<h2 class="text-center text-white">Welcome to home page</h2>
+		<p class="text-center text-white" th:text="*{username}"></p>
+		<form th:method="post" th:action="@{/logout}">
+			<input class="btn btn-link nav-link" type="submit" value="Logout">
+		</form>
+
+		<form sec:authorize="hasRole('TEACHER')" th:method="GET"
+			th:action="@{/bearPage}">
+			<input class="btn btn-link nav-link" type="submit"
+				value="Go to wiki page">
+		</form>
+	</div>
+</body>
+</html>

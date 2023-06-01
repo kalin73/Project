@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<title>Register</title>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+	<div class="register">
+		<h1>Register</h1>
+		<form th:method="POST" th:action="@{/register}"
+			th:object="${userRegisterForm}">
+			<label for="username"> <i class="fa fa-user"
+				aria-hidden="true"></i>
+			</label> <input type="text" name="username" placeholder="Username"
+				id="username" required> <label for="password"> <i
+				class="fa fa-lock" aria-hidden="true"></i>
+			</label> <input type="password" name="password" placeholder="Password"
+				id="password" required> <label for="email"> <i
+				class="fa fa-envelope" aria-hidden="true"></i>
+			</label> <input type="email" name="email" placeholder="Email" id="email"
+				required>
+
+			<div class="teacher">
+				<input type="radio" id="teacher" name="role" value="TEACHER" />
+				<label for="teacher">Teacher</label>
+			</div>
+
+			<div class="student">
+				<input type="radio" id="student" name="role" value="STUDENT" />
+				<label for="student">Student</label>
+			</div>
+			<input type="submit" value="Register">
+		</form>
+	</div>
+</body>
+
+</html>
