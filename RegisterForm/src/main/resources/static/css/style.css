@@ -159,3 +159,21 @@ body {
 	background-color: #2868c7;
 	transition: background-color 0.2s;
 }
+
+.login form li{
+	display: inline;
+}
+
+.login form li a{
+	display: inline;
+	margin: 12px;
+	padding: 10px;
+	background-color: #FF0000;
+	color: #FFF;
+	text-decoration: none;
+}
+
+.login form li a:hover{
+	opacity: 35%;
+	cursor: pointer;
+}
