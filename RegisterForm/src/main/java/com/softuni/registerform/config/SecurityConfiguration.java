@@ -20,7 +20,7 @@ public class SecurityConfiguration {
 	SecurityFilterChain secFilter(HttpSecurity httpSecurity) throws Exception {
 		httpSecurity.authorizeHttpRequests()
 				.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-				.requestMatchers("/login", "/", "/login-error", "/register").permitAll()
+				.requestMatchers("/login", "/", "/login-error", "/register", "/forgotPassword", "/newPassword").permitAll()
 				.requestMatchers("/success").authenticated()
 				.requestMatchers("/bearPage").hasRole(Roles.TEACHER.name())
 				.and()

@@ -39,4 +39,18 @@ public class UserService {
 
 		this.userRepository.save(user);
 	}
+
+	public boolean checkEmail(String email) {
+		boolean isPresent = this.userRepository.findByEmail(email).isPresent();	
+		
+		return isPresent;
+	}
+	
+	public void changePassword(String password, String userEmail) {
+		UserEntity user = this.userRepository.findByEmail(userEmail).get();
+		
+		user.setPassword(passwordEncoder.encode(password));
+		
+		this.userRepository.save(user);		
+	}
 }
