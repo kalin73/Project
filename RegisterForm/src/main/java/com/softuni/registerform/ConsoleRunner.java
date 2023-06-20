@@ -10,7 +10,7 @@ public class ConsoleRunner implements CommandLineRunner {
 	private final InitService initService;
 
 	public ConsoleRunner(InitService initService) {
-		this.initService = initService; 
+		this.initService = initService;
 	}
 
 	@Override
