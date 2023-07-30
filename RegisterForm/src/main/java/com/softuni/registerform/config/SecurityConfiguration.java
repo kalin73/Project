@@ -18,30 +18,25 @@ public class SecurityConfiguration {
 
 	@Bean
 	SecurityFilterChain secFilter(HttpSecurity httpSecurity) throws Exception {
-		httpSecurity.authorizeHttpRequests()
-				.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-				.requestMatchers("/login", "/", "/login-error", "/register", "/forgotPassword", "/newPassword").permitAll()
-				.requestMatchers("/success").authenticated()
-				.requestMatchers("/bearPage").hasRole(Roles.TEACHER.name())
-				.and()
-				.formLogin(login -> login.loginPage("/login")
-						.usernameParameter("username")
-						.passwordParameter("password")
-						.defaultSuccessUrl("/success")
-						.failureForwardUrl("/login-error"))
+		httpSecurity
+				.authorizeHttpRequests(requestMatcher -> requestMatcher
+						.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+						.requestMatchers("/login", "/", "/login-error", "/register", "/forgotPassword", "/newPassword").permitAll()
+						.requestMatchers("/success").authenticated().requestMatchers("/bearPage")
+						.hasRole(Roles.TEACHER.name()))
+				.formLogin(login -> login.loginPage("/login").usernameParameter("username")
+						.passwordParameter("password").defaultSuccessUrl("/success").failureForwardUrl("/login-error"))
 				.logout(logout -> logout.logoutUrl("/logout").logoutSuccessUrl("/").invalidateHttpSession(true))
-				.rememberMe(me -> me
-						.key("someUniqueKey")
-                        .tokenValiditySeconds(604800));
-		
+				.rememberMe(me -> me.key("someUniqueKey").tokenValiditySeconds(604800));
+
 		return httpSecurity.build();
 	}
-	
+
 	@Bean
 	PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-	
+
 	@Bean
 	UserDetailsService userDetails(UserRepository userRepository) {
 		return new AuthenticatedUser(userRepository);

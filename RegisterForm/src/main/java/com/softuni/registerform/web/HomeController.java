@@ -39,8 +39,8 @@ public class HomeController {
 	}
 
 	@PostMapping("/newPassword")
-	public String createNewPassword(@ModelAttribute(name = "password") String password,
-			@ModelAttribute("confirmPassword") String confirmPassword) {
+	public String createNewPassword(@ModelAttribute String password,
+            @ModelAttribute String confirmPassword) {
 		if (password.equals(confirmPassword)) {
 			this.userService.changePassword(confirmPassword, user.getEmail());
 			user.setEmail(null);
@@ -52,7 +52,7 @@ public class HomeController {
 	}
 
 	@PostMapping("/forgotPassword")
-	public String forgotPassword(@ModelAttribute(name = "email") String email, RedirectAttributes redirectAttributes) {
+	public String forgotPassword(@ModelAttribute String email, RedirectAttributes redirectAttributes) {
 		if (userService.checkEmail(email)) {
 			user.setEmail(email);
 
@@ -103,7 +103,7 @@ public class HomeController {
 	}
 
 	@PostMapping("/login-error")
-	public String onFailedLogin(RedirectAttributes redirectAttributes, @ModelAttribute("username") String username) {
+	public String onFailedLogin(RedirectAttributes redirectAttributes, @ModelAttribute String username) {
 		redirectAttributes.addFlashAttribute("username", username);
 		redirectAttributes.addFlashAttribute("bad_credentials", true);
 
