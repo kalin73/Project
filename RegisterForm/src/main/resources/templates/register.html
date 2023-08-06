@@ -12,8 +12,7 @@
 <body>
 	<div class="register">
 		<h1>Register</h1>
-		<form th:method="POST" th:action="@{/register}"
-			th:object="${userRegisterForm}">
+		<form th:method="POST" th:action="@{/register}">
 			<label for="username"> <i class="fa fa-user"
 				aria-hidden="true"></i>
 			</label> <input type="text" name="username" placeholder="Username"
