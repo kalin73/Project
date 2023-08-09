@@ -1,10 +1,17 @@
 package com.softuni.registerform.domain.dto;
 
-public class UserRegisterForm {
-	private String username;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Size;
 
+public class UserRegisterForm {
+	
+	@Size(min = 4, max = 15)
+	private String username;
+	
+	@Size(min = 4)
 	private String password;
 
+	@Email
 	private String email;
 
 	private String role;

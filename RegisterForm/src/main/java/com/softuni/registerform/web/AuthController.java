@@ -2,7 +2,9 @@ package com.softuni.registerform.web;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -12,9 +14,11 @@ import com.softuni.registerform.domain.dto.UserChangePasswordDto;
 import com.softuni.registerform.domain.dto.UserRegisterForm;
 import com.softuni.registerform.service.UserService;
 
+import jakarta.validation.Valid;
+
 @Controller
 public class AuthController {
-
+	private static final String BINDING_RESULT_PATH = "org.springframework.validation.BindingResult.";
 	private final UserService userService;
 	private final UserChangePasswordDto user;
 
@@ -25,12 +29,23 @@ public class AuthController {
 	}
 
 	@GetMapping("/register")
-	public String getRegister() {
-		return "register";
+	public ModelAndView getRegister(ModelAndView modelAndView, @ModelAttribute UserRegisterForm userRegisterForm) {
+		modelAndView.setViewName("register");
+		// modelAndView.addObject("userRegisterForm", new UserRegisterForm());
+
+		return modelAndView;
 	}
 
 	@PostMapping("/register")
-	public String register(UserRegisterForm userRegisterForm, RedirectAttributes redirectAttributes) {
+	public String register(@Valid @ModelAttribute UserRegisterForm userRegisterForm, RedirectAttributes redirectAttributes,
+			BindingResult bindingResult) {
+
+		if (bindingResult.hasErrors()) {
+			redirectAttributes.addFlashAttribute("userRegisterForm", userRegisterForm)
+					.addFlashAttribute(BINDING_RESULT_PATH + "userRegisterForm", bindingResult);
+			return "redirect:/register";
+		}
+
 		this.userService.registerUser(userRegisterForm);
 
 		redirectAttributes.addFlashAttribute("username", userRegisterForm.getUsername());
