@@ -29,15 +29,15 @@ public class AuthController {
 	}
 
 	@GetMapping("/register")
-	public ModelAndView getRegister(ModelAndView modelAndView, @ModelAttribute UserRegisterForm userRegisterForm) {
+	public ModelAndView getRegister(ModelAndView modelAndView) {
 		modelAndView.setViewName("register");
-		// modelAndView.addObject("userRegisterForm", new UserRegisterForm());
+		modelAndView.addObject("userRegisterForm", new UserRegisterForm());
 
 		return modelAndView;
 	}
 
 	@PostMapping("/register")
-	public String register(@Valid @ModelAttribute UserRegisterForm userRegisterForm, RedirectAttributes redirectAttributes,
+	public String register(@Valid UserRegisterForm userRegisterForm, RedirectAttributes redirectAttributes,
 			BindingResult bindingResult) {
 
 		if (bindingResult.hasErrors()) {
