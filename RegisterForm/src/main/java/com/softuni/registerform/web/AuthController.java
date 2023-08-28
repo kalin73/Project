@@ -37,12 +37,13 @@ public class AuthController {
 	}
 
 	@PostMapping("/register")
-	public String register(@Valid UserRegisterForm userRegisterForm, RedirectAttributes redirectAttributes,
-			BindingResult bindingResult) {
+	public String register(@Valid UserRegisterForm userRegisterForm, BindingResult bindingResult,
+			RedirectAttributes redirectAttributes) {
 
 		if (bindingResult.hasErrors()) {
 			redirectAttributes.addFlashAttribute("userRegisterForm", userRegisterForm)
 					.addFlashAttribute(BINDING_RESULT_PATH + "userRegisterForm", bindingResult);
+			
 			return "redirect:/register";
 		}
 

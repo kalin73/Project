@@ -22,8 +22,8 @@ public class SecurityConfiguration {
 				.authorizeHttpRequests(requestMatcher -> requestMatcher
 						.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
 						.requestMatchers("/login", "/", "/login-error", "/register", "/forgotPassword", "/newPassword").permitAll()
-						.requestMatchers("/success").authenticated().requestMatchers("/bearPage")
-						.hasRole(Roles.TEACHER.name()))
+						.requestMatchers("/success").authenticated()
+						.requestMatchers("/bearPage").hasRole(Roles.TEACHER.name()))
 				.formLogin(login -> login.loginPage("/login").usernameParameter("username")
 						.passwordParameter("password").defaultSuccessUrl("/success").failureForwardUrl("/login-error"))
 				.logout(logout -> logout.logoutUrl("/logout").logoutSuccessUrl("/").invalidateHttpSession(true))

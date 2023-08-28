@@ -14,9 +14,9 @@
 		<form th:method="POST" th:action="@{/register}" th:object="${userRegisterForm}">
 			<div>
 				<label for="username"> <i class="fa fa-user" aria-hidden="true"></i>
-				</label> <input type="text" name="username" placeholder="Username" th:field=*{username} id="username"
-					required>
-				<p th:if="${#fields.hasErrors('username')}" class=" errors alertalert-danger">Username is required.</p>
+				</label> <input type="text" name="username" placeholder="Username" th:field="*{username}"
+					th:value="*{username}" id="username" required>
+				<p th:if="${#fields.hasErrors('username')}">Username is required.</p>
 			</div>
 			<div>
 				<label for="password"> <i class="fa fa-lock" aria-hidden="true"></i>
@@ -25,7 +25,7 @@
 			</div>
 			<div>
 				<label for="email"> <i class="fa fa-envelope" aria-hidden="true"></i>
-				</label> <input type="email" name="email" placeholder="Email" th:field=*{email} id="email" required>
+				</label> <input type="email" name="email" placeholder="Email" th:field="*{email}" id="email" required>
 				<p th:if="${#fields.hasErrors('email')}" class=" errors alertalert-danger">Valid email is required.</p>
 			</div>
 			<div class="teacher">
