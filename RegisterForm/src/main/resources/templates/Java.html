@@ -1,56 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <title>Java</title>
-    <link rel="icon" type="image/icon" href="/static/images/java_logo.png"/>
-    <link rel="stylesheet" href="../static/css/java.css"/>
-    <script src="/js/slideshow.js"></script>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>Java</title>
+	<link rel="icon" type="/image/icon" href="/images/java_logo.png" />
+	<link rel="stylesheet" href="/css/java.css" />
+	<script src="/js/slideshow.js"></script>
 </head>
+
 <body>
-<div class="navigation-bar">
-    <ul>
-        <li><a href="#">Начало</a></li>
-        <li><a class="active" href="#">Java</a></li>
-        <li><a href="#">HTML</a></li>
-        <li><a href="#">JavaScript</a></li>
-        <li><a href="#">CSS</a></li>
+	<div>
+		<nav th:replace="~{fragments/nav}"></nav>
+	</div>
 
-        <!--        <li sec:authorize="isAuthenticated()" style="float: right;">-->
-        <!--            <form-->
-        <!--                    th:method="post" th:action="@{/logout}">-->
-        <!--                <input class="form-inline my-2 my-lg-0 border px-3" type="submit"-->
-        <!--                       value="Logout">-->
-        <!--            </form>-->
-        <!--        <li sec:authorize="isAnonymous()" style="float: right;"><a-->
-        <!--                href="/register">Register</a></li>-->
-        <!--        <li sec:authorize="isAnonymous()" style="float: right;"><a-->
-        <!--                href="/login">Login</a></li>-->
-    </ul>
-</div>
+	<section>
+		<form action="" autocomplete="off" enctype="multipart/form-data">
+			<p>Upload File</p>
+			<div>
+				<input type="file" id="upload" style="display: none;" />
+				<label for="upload">Select Files</label>
+			</div>
+			<button><span>&#8682; Upload</span><span class="uploading">Uploading......</span></button>
+			<button class="cancle">Cancel Upload</button>
+			<div class="pr">
+				<strong>
+					<h4 class="ex">PDF</h4>
+					<h5 class="size">2.5kb</h5>
+				</strong>
+				<progress min="0" max="100" value="0"></progress>
+				<span class="progress-indicator"></span>
+			</div>
+		</form>
+	</section>
 
-<section>
-    <form action="" autocomplete="off" enctype="multipart/form-data">
-        <p>Upload File</p>
-        <div>
-            <input type="file" id="upload" style="display: none;"/>
-            <label for="upload">Select Files</label>
-        </div>
-        <button><span>&#8682; Upload</span><span class="uploading">Uploading......</span></button>
-        <button class="cancle">Cancel Upload</button>
-        <div class="pr">
-            <strong>
-                <h4 class="ex">PDF</h4>
-                <h5 class="size">2.5kb</h5>
-            </strong>
-            <progress min="0" max="100" value="0"></progress>
-            <span class="progress-indicator"></span>
-        </div>
-    </form>
-</section>
-
-<script type="text/javascript" src="../static/js/java.js"></script>
+	<script type="text/javascript" src="../static/js/java.js"></script>
 </body>
+
 </html>

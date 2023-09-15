@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+
+<body>
+	<div th:fragment="navigation" class="navigation-bar">
+		<ul>
+			<li><a class="active" href="#">Начало</a></li>
+			<li sec:authorize="isAuthenticated()"><a href="/java">Java</a></li>
+			<li sec:authorize="isAuthenticated()"><a href="#">HTML</a></li>
+			<li sec:authorize="isAuthenticated()"><a href="#">JavaScript</a></li>
+			<li sec:authorize="isAuthenticated()"><a href="#">CSS</a></li>
+			<li sec:authorize="isAuthenticated()" style="float: right;">
+				<form th:method="post" th:action="@{/logout}">
+					<input class="form-inline my-2 my-lg-0 border px-3" type="submit" value="Logout">
+				</form>
+			<li sec:authorize="isAnonymous()" style="float: right;"><a href="/register">Register</a></li>
+			<li sec:authorize="isAnonymous()" style="float: right;"><a href="/login">Login</a></li>
+		</ul>
+	</div>
+</body>
+
+</html>

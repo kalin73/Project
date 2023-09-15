@@ -14,23 +14,8 @@
 <body>
 	<h1>Северозападен Университет по Програмиране</h1>
 
-	<div class="navigation-bar">
-		<ul>
-			<li><a class="active" href="#">Начало</a></li>
-			<li><a href="#">Java</a></li>
-			<li><a href="#">HTML</a></li>
-			<li><a href="#">JavaScript</a></li>
-			<li><a href="#">CSS</a></li>
-			<li sec:authorize="isAuthenticated()" style="float: right;"><form
-					th:method="post" th:action="@{/logout}">
-					<input class="form-inline my-2 my-lg-0 border px-3" type="submit"
-						value="Logout">
-				</form>
-			<li sec:authorize="isAnonymous()" style="float: right;"><a
-				href="/register">Register</a></li>
-			<li sec:authorize="isAnonymous()" style="float: right;"><a
-				href="/login">Login</a></li>
-		</ul>
+	<div>
+		<nav th:replace="~{fragments/nav}"></nav>
 	</div>
 
 	<div class="slider">
