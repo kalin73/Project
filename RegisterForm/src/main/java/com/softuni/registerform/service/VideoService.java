@@ -36,4 +36,10 @@ public class VideoService {
 
 		return videoRepository.save(video).getId();
 	}
+
+	public String getVideoPathById(Long id) {
+		VideoEntity video = this.videoRepository.findById(id).orElse(null);
+		
+		return video.getPath();
+	}
 }

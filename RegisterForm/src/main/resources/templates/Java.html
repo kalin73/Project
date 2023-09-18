@@ -16,16 +16,25 @@
 		<nav th:replace="~{fragments/nav}"></nav>
 	</div>
 
-	<form action="/java/upload" enctype="multipart/form-data">
-		<div>
-			<label for="upload-image">Video to upload</label> <input type="file" id="upload-image" name="video"
-				required="required">
-		</div>
-
-		<input type="submit" th:value="Submit">
-	</form>
-
-
+	<section>
+		<form th:action="@{/java/upload}" enctype="multipart/form-data" th:method="POST">
+			<p>Upload File</p>
+			<div>
+				<input type="file" id="upload" style="display: none;" name="video" />
+				<label for="upload">Select Files</label>
+			</div>
+			<button><span>&#8682; Upload</span><span class="uploading">Uploading......</span></button>
+			<button class="cancle">Cancel Upload</button>
+			<div class="pr">
+				<strong>
+					<h4 class="ex">PDF</h4>
+					<h5 class="size">2.5kb</h5>
+				</strong>
+				<progress min="0" max="100" value="0"></progress>
+				<span class="progress-indicator"></span>
+			</div>
+		</form>
+	</section>
 </body>
 
 </html>
