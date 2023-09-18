@@ -15,7 +15,7 @@ import com.softuni.registerform.repository.VideoRepository;
 @Service
 public class VideoService {
 	private final VideoRepository videoRepository;
-	private static final String DIRECTORY = "C:/Users/Kalin/Desktop/";
+	private static final String DIRECTORY = "src\\main\\resources\\static\\videos\\";
 
 	public VideoService(VideoRepository videoRepository) {
 		this.videoRepository = videoRepository;
@@ -37,9 +37,9 @@ public class VideoService {
 		return videoRepository.save(video).getId();
 	}
 
-	public String getVideoPathById(Long id) {
+	public VideoEntity getVideoPathById(Long id) {
 		VideoEntity video = this.videoRepository.findById(id).orElse(null);
 		
-		return video.getPath();
+		return video;
 	}
 }

@@ -10,9 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.softuni.registerform.domain.dto.VideoUploadModel;
+import com.softuni.registerform.domain.entity.VideoEntity;
 import com.softuni.registerform.service.VideoService;
-
-import ch.qos.logback.core.model.Model;
 
 @Controller
 public class PageController {
@@ -36,8 +35,10 @@ public class PageController {
 
 	@GetMapping("/java/video/{id}")
 	public ModelAndView showVideo(@PathVariable(name = "id") Long id, ModelAndView modelAndView) {
-		String path = this.videoService.getVideoPathById(id);
-		modelAndView.addObject("path", path);
+		VideoEntity video = this.videoService.getVideoPathById(id);
+		video.setPath(video.getPath().replaceAll("//", "/"));
+		
+		modelAndView.addObject("video", video);
 		modelAndView.setViewName("Video");
 
 		return modelAndView;
