@@ -2,14 +2,14 @@
 <html>
 
 <head>
-    <meta charset="UTF-8">
-    <title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
 </head>
 
 <body>
-<div class="videoUpload">
-    <video controls width="200" height="300" src="../static/videos"></video>
-</div>
+	<div class="videoUpload" th:object="${video}">
+		<video controls width="200" height="300" src="/static/videos/Test1.mp4"></video>
+	</div>
 </body>
 
 </html>

@@ -16,6 +16,7 @@ import com.softuni.registerform.repository.VideoRepository;
 public class VideoService {
 	private final VideoRepository videoRepository;
 	private static final String DIRECTORY = "src\\main\\resources\\static\\videos\\";
+	private static final String PATH = "/videos/";
 
 	public VideoService(VideoRepository videoRepository) {
 		this.videoRepository = videoRepository;
@@ -30,7 +31,7 @@ public class VideoService {
 			os.write(videoModel.getVideo().getBytes());
 		}
 
-		final String filePath = file.getPath();
+		final String filePath = PATH + videoModel.getVideo().getOriginalFilename().replace("\\", "/");
 
 		video.setContentType(videoModel.getVideo().getContentType()).setPath(filePath);
 
