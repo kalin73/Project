@@ -36,7 +36,6 @@ public class PageController {
 	@GetMapping("/java/video/{id}")
 	public ModelAndView showVideo(@PathVariable(name = "id") Long id, ModelAndView modelAndView) {
 		VideoEntity video = this.videoService.getVideoPathById(id);
-		video.setPath(video.getPath().replaceAll("//", "/"));
 		
 		modelAndView.addObject("video", video);
 		modelAndView.setViewName("Video");
