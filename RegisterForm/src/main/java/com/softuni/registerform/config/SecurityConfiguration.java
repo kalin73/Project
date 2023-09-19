@@ -20,12 +20,12 @@ public class SecurityConfiguration {
 	SecurityFilterChain secFilter(HttpSecurity httpSecurity) throws Exception {
 		httpSecurity
 				.authorizeHttpRequests(requestMatcher -> requestMatcher
-						.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+						.requestMatchers(PathRequest.toStaticResources().atCommonLocations())
+						.permitAll()
 						.requestMatchers("/login", "/", "/login-error", "/register", "/forgotPassword", "/newPassword")
 						.permitAll()
 						.requestMatchers("/success", "/java", "/css", "/html", "/js", "/java/upload", "/java/video/*")
-						.authenticated()
-						.requestMatchers("/bearPage").hasRole(Roles.TEACHER.name()))
+						.authenticated().requestMatchers("/bearPage").hasRole(Roles.TEACHER.name()))
 				.formLogin(login -> login.loginPage("/login").usernameParameter("username")
 						.passwordParameter("password").defaultSuccessUrl("/success").failureForwardUrl("/login-error"))
 				.logout(logout -> logout.logoutUrl("/logout").logoutSuccessUrl("/").invalidateHttpSession(true))
