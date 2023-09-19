@@ -5,9 +5,12 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import com.softuni.registerform.domain.dto.VideoModel;
 import com.softuni.registerform.domain.dto.VideoUploadModel;
 import com.softuni.registerform.domain.entity.VideoEntity;
 import com.softuni.registerform.repository.VideoRepository;
@@ -15,8 +18,8 @@ import com.softuni.registerform.repository.VideoRepository;
 @Service
 public class VideoService {
 	private final VideoRepository videoRepository;
-	private static final String DIRECTORY = "src\\main\\resources\\static\\videos\\";
-	private static final String PATH = "/videos/";
+	private static final String DIRECTORY = "src\\main\\resources\\static\\images\\";
+	private static final String PATH = "/images/";
 
 	public VideoService(VideoRepository videoRepository) {
 		this.videoRepository = videoRepository;
@@ -33,14 +36,24 @@ public class VideoService {
 
 		final String filePath = PATH + videoModel.getVideo().getOriginalFilename().replace("\\", "/");
 
-		video.setContentType(videoModel.getVideo().getContentType()).setPath(filePath);
+		video.setContentType(videoModel.getVideo().getContentType())
+			.setName(videoModel.getVideo().getOriginalFilename())
+			.setPath(filePath);
 
 		return videoRepository.save(video).getId();
 	}
 
-	public VideoEntity getVideoPathById(Long id) {
-		VideoEntity video = this.videoRepository.findById(id).orElse(null);
+	public List<VideoModel> getAllVideos() {
+		List<VideoModel> videos = this.videoRepository.findAll()
+				.stream().map(VideoModel::mapToVideoModel)
+				.collect(Collectors.toList());
 		
-		return video;
+		return videos;
+	}
+
+	public VideoModel getVideoPathById(Long id) {
+		VideoEntity video = this.videoRepository.findById(id).orElse(null);
+
+		return VideoModel.mapToVideoModel(video);
 	}
 }

@@ -9,6 +9,9 @@ public class VideoEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@Column
+	private String name;
+
 	@Column(columnDefinition = "TEXT")
 	private String path;
 
@@ -25,6 +28,15 @@ public class VideoEntity {
 
 	public VideoEntity setId(Long id) {
 		this.id = id;
+		return this;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public VideoEntity setName(String name) {
+		this.name = name;
 		return this;
 	}
 
