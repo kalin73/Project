@@ -1,17 +1,16 @@
 package com.softuni.registerform.web;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.softuni.registerform.domain.dto.VideoModel;
-import com.softuni.registerform.domain.dto.VideoUploadModel;
+import com.softuni.registerform.domain.enums.Languages;
+
+import static com.softuni.registerform.domain.enums.Languages.*;
 import com.softuni.registerform.service.VideoService;
 
 @Controller
@@ -24,21 +23,33 @@ public class PageController {
 
 	@GetMapping("/java")
 	public ModelAndView getJavaPage(ModelAndView modelAndView) {
-		List<VideoModel> videos = this.videoService.getAllVideos();
-		modelAndView.addObject("videos", videos);
-		modelAndView.setViewName("Java");
+		getPage(modelAndView, Java);
 
 		return modelAndView;
 	}
 
-	@PostMapping("/java/upload")
-	public String uploadVideo(VideoUploadModel video) throws FileNotFoundException, IOException {
-		videoService.saveVideo(video);
+	@GetMapping("/html")
+	public ModelAndView getHtmlPage(ModelAndView modelAndView) {
+		getPage(modelAndView, HTML);
 
-		return "redirect:/java";
+		return modelAndView;
 	}
 
-	@GetMapping("/java/video/{id}")
+	@GetMapping("/js")
+	public ModelAndView getJavaScriptPage(ModelAndView modelAndView) {
+		getPage(modelAndView, JavaScript);
+
+		return modelAndView;
+	}
+
+	@GetMapping("/css")
+	public ModelAndView getCssPage(ModelAndView modelAndView) {
+		getPage(modelAndView, CSS);
+
+		return modelAndView;
+	}
+
+	@GetMapping("/video/{id}")
 	public ModelAndView showVideo(@PathVariable(name = "id") Long id, ModelAndView modelAndView) {
 		VideoModel video = this.videoService.getVideoPathById(id);
 
@@ -46,5 +57,12 @@ public class PageController {
 		modelAndView.setViewName("Video");
 
 		return modelAndView;
+	}
+
+	private final void getPage(ModelAndView modelAndView, Languages language) {
+		List<VideoModel> videos = this.videoService.getAllVideosByLanguage(language);
+		modelAndView.addObject("videos", videos);
+		modelAndView.addObject("language", language.name().toLowerCase());
+		modelAndView.setViewName(language.name());
 	}
 }

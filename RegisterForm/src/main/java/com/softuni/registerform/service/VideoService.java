@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.softuni.registerform.domain.dto.VideoModel;
 import com.softuni.registerform.domain.dto.VideoUploadModel;
 import com.softuni.registerform.domain.entity.VideoEntity;
+import com.softuni.registerform.domain.enums.Languages;
 import com.softuni.registerform.repository.VideoRepository;
 
 @Service
@@ -25,7 +26,7 @@ public class VideoService {
 		this.videoRepository = videoRepository;
 	}
 
-	public Long saveVideo(VideoUploadModel videoModel) throws FileNotFoundException, IOException {
+	public Long saveVideo(VideoUploadModel videoModel, Languages language) throws FileNotFoundException, IOException {
 		VideoEntity video = new VideoEntity();
 
 		File file = new File(DIRECTORY + videoModel.getVideo().getOriginalFilename());
@@ -38,13 +39,14 @@ public class VideoService {
 
 		video.setContentType(videoModel.getVideo().getContentType())
 			.setName(videoModel.getVideo().getOriginalFilename())
-			.setPath(filePath);
+			.setPath(filePath)
+			.setLanguage(language.name());
 
 		return videoRepository.save(video).getId();
 	}
 
-	public List<VideoModel> getAllVideos() {
-		List<VideoModel> videos = this.videoRepository.findAll()
+	public List<VideoModel> getAllVideosByLanguage(Languages language) {
+		List<VideoModel> videos = this.videoRepository.findAllByLanguage(language.name())
 				.stream().map(VideoModel::mapToVideoModel)
 				.collect(Collectors.toList());
 		

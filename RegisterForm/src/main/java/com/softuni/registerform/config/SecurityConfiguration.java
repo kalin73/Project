@@ -24,7 +24,7 @@ public class SecurityConfiguration {
 						.permitAll()
 						.requestMatchers("/login", "/", "/login-error", "/register", "/forgotPassword", "/newPassword")
 						.permitAll()
-						.requestMatchers("/success", "/java", "/css", "/html", "/js", "/java/upload", "/java/video/*")
+						.requestMatchers("/success", "/java", "/css", "/html", "/js", "/upload/**")
 						.authenticated().requestMatchers("/bearPage").hasRole(Roles.TEACHER.name()))
 				.formLogin(login -> login.loginPage("/login").usernameParameter("username")
 						.passwordParameter("password").defaultSuccessUrl("/success").failureForwardUrl("/login-error"))

@@ -11,9 +11,9 @@
 		<ul>
 			<li><a class="active" href="#">Начало</a></li>
 			<li sec:authorize="isAuthenticated()"><a href="/java">Java</a></li>
-			<li sec:authorize="isAuthenticated()"><a href="#">HTML</a></li>
-			<li sec:authorize="isAuthenticated()"><a href="#">JavaScript</a></li>
-			<li sec:authorize="isAuthenticated()"><a href="#">CSS</a></li>
+			<li sec:authorize="isAuthenticated()"><a href="/html">HTML</a></li>
+			<li sec:authorize="isAuthenticated()"><a href="/js">JavaScript</a></li>
+			<li sec:authorize="isAuthenticated()"><a href="/css">CSS</a></li>
 			<li sec:authorize="isAuthenticated()" style="float: right;">
 				<form th:method="post" th:action="@{/logout}">
 					<input class="form-inline my-2 my-lg-0 border px-3" type="submit" value="Logout">

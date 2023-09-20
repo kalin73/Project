@@ -18,6 +18,9 @@ public class VideoEntity {
 	@Column(name = "content_type")
 	private String contentType;
 
+	@Column(name = "language")
+	private String language;
+
 	public VideoEntity() {
 
 	}
@@ -55,6 +58,15 @@ public class VideoEntity {
 
 	public VideoEntity setContentType(String contentType) {
 		this.contentType = contentType;
+		return this;
+	}
+
+	public String getLanguage() {
+		return language;
+	}
+
+	public VideoEntity setLanguage(String language) {
+		this.language = language;
 		return this;
 	}
 

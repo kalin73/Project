@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+
+<body>
+	<section>
+		<form th:action="'/upload/' + *{language}" enctype="multipart/form-data" th:method="POST">
+			<p>Upload File</p>
+			<div>
+				<input type="file" id="upload" style="display: none;" name="video" />
+				<label for="upload">Select Files</label>
+			</div>
+			<button><span>&#8682; Upload</span><span class="uploading">Uploading......</span></button>
+			<button class="cancle">Cancel Upload</button>
+			<div class="pr">
+				<strong>
+					<h4 class="ex">PDF</h4>
+					<h5 class="size">2.5kb</h5>
+				</strong>
+				<progress min="0" max="100" value="0"></progress>
+				<span class="progress-indicator"></span>
+			</div>
+		</form>
+	</section>
+	<section class="road" th:each="video : ${videos}" th:object="${video}">
+		<div>
+			<h2 th:text="*{name}">Video name</h2>
+			<video controls width="200" height="300" th:src="*{path}"></video>
+		</div>
+	</section>
+</body>
+
+</html>
