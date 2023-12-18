@@ -66,16 +66,17 @@ body {
 	transition: background-color 0.2s;
 }
 
-.register form .teacher label{
+.register form .teacher label {
 	display: inline;
 	background-color: white;
 	color: black;
 }
 
-.register form .student{
+.register form .student {
 	margin-left: 70px;
 }
-.register form .student label{
+
+.register form .student label {
 	display: inline;
 	background-color: white;
 	color: black;
@@ -160,11 +161,11 @@ body {
 	transition: background-color 0.2s;
 }
 
-.login form li{
+.login form li {
 	display: inline;
 }
 
-.login form li a{
+.login form li a {
 	display: inline;
 	margin: 12px;
 	padding: 10px;
@@ -173,7 +174,22 @@ body {
 	text-decoration: none;
 }
 
-.login form li a:hover{
+.login form li a:hover {
 	opacity: 35%;
 	cursor: pointer;
+}
+
+.radioBtn {
+	margin: 10px;
+	display: flex;
+	padding: 5px;
+}
+
+.radioBtn input {
+	margin: 10px;
+}
+
+.radioBtn label {
+	width: 40%;
+	margin: 10px;
 }
