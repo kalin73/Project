@@ -1,0 +1,21 @@
+CREATE TABLE roles(
+	id BIGINT PRIMARY KEY AUTO_INCREMENT,
+	role VARCHAR(50)
+);
+
+CREATE TABLE users (
+	id BIGINT PRIMARY KEY AUTO_INCREMENT,
+	email VARCHAR(50) NOT NULL,
+	password VARCHAR(255),
+	role_id BIGINT,
+	FOREIGN KEY(role_id) REFERENCES roles(id)
+);
+
+CREATE TABLE videos(
+	id BIGINT PRIMARY KEY AUTO_INCREMENT,
+	content_type VARCHAR(255),
+	language VARCHAR(255),
+	name VARCHAR(255),
+	path TEXT
+);
+	

@@ -1,0 +1,2 @@
+ALTER TABLE users
+MODIFY username VARCHAR(50) AFTER email;
