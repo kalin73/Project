@@ -1,24 +1,21 @@
 package com.softuni.registerform.domain.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "videos")
 public class VideoEntity {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column
 	private String name;
 
-	@Column(columnDefinition = "TEXT")
 	private String path;
 
-	@Column(name = "content_type")
 	private String contentType;
 
-	@Column(name = "language")
 	private String language;
 
 	public VideoEntity() {

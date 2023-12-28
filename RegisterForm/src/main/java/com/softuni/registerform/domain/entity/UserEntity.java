@@ -1,6 +1,5 @@
 package com.softuni.registerform.domain.entity;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -16,16 +15,13 @@ public class UserEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(nullable = false)
 	private String username;
 
-	@Column(nullable = false)
 	private String password;
 
-	@Column(nullable = false)
 	private String email;
 
-	@OneToOne(targetEntity = RolesEntity.class, fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.EAGER)
 	private RolesEntity role;
 
 	public UserEntity() {

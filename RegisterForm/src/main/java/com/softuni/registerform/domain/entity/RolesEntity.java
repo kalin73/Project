@@ -1,6 +1,7 @@
 package com.softuni.registerform.domain.entity;
 
 import com.softuni.registerform.domain.enums.Roles;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
